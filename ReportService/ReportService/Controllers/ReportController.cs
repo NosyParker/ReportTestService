@@ -27,7 +27,8 @@ namespace ReportService.Controllers
         public IActionResult Download(int year, int month)
         {
             var actions = new List<(Action<Employee, Report>, Employee)>();
-            var report = new Report() { S = MonthNameResolver.MonthName.GetName(year, month) };
+
+            var report = new Report(MonthNameResolver.MonthName.GetName(year, month));
 
             var connString = config.GetConnectionString("DatabaseConnection");
 
@@ -53,21 +54,22 @@ namespace ReportService.Controllers
                     emplist.Add(emp);
                 }
 
-                actions.Add((new ReportFormatter(null).NL, new Employee()));
-                actions.Add((new ReportFormatter(null).WL, new Employee()));
-                actions.Add((new ReportFormatter(null).NL, new Employee()));
-                actions.Add((new ReportFormatter(null).WD, new Employee() { Department = depName } ));
+                actions.Add((new ReportFormatter(null).AddNewLine, new Employee()));
+                actions.Add((new ReportFormatter(null).AddDividerLine, new Employee()));
+                actions.Add((new ReportFormatter(null).AddNewLine, new Employee()));
+                actions.Add((new ReportFormatter(null).AddEmployeeDepartament, new Employee() { Department = depName } ));
+
                 for (int i = 1; i < emplist.Count(); i ++)
                 {
-                    actions.Add((new ReportFormatter(emplist[i]).NL, emplist[i]));
-                    actions.Add((new ReportFormatter(emplist[i]).WE, emplist[i]));
-                    actions.Add((new ReportFormatter(emplist[i]).WT, emplist[i]));
-                    actions.Add((new ReportFormatter(emplist[i]).WS, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddNewLine, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddEmployeeName, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddTabLine, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddEmployeeSalary, emplist[i]));
                 }  
 
             }
-            actions.Add((new ReportFormatter(null).NL, null));
-            actions.Add((new ReportFormatter(null).WL, null));
+            actions.Add((new ReportFormatter(null).AddNewLine, null));
+            actions.Add((new ReportFormatter(null).AddDividerLine, null));
 
             foreach (var act in actions)
             {
