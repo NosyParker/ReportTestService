@@ -54,18 +54,19 @@ namespace ReportService.Controllers
                     emplist.Add(emp);
                 }
 
-                actions.Add((new ReportFormatter(null).AddNewLine, new Employee()));
-                actions.Add((new ReportFormatter(null).AddDividerLine, new Employee()));
-                actions.Add((new ReportFormatter(null).AddNewLine, new Employee()));
+                actions.Add((new ReportFormatter(null).AddNewLine, null));
+                actions.Add((new ReportFormatter(null).AddDividerLine, null));
+                actions.Add((new ReportFormatter(null).AddNewLine, null));
                 actions.Add((new ReportFormatter(null).AddEmployeeDepartament, new Employee() { Department = depName } ));
 
-                for (int i = 1; i < emplist.Count(); i ++)
+                var empCount = emplist.Count();
+                for (int i = 0; i < empCount; i++)
                 {
-                    actions.Add((new ReportFormatter(emplist[i]).AddNewLine, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddNewLine, null));
                     actions.Add((new ReportFormatter(emplist[i]).AddEmployeeName, emplist[i]));
-                    actions.Add((new ReportFormatter(emplist[i]).AddTabLine, emplist[i]));
+                    actions.Add((new ReportFormatter(emplist[i]).AddTabLine, null));
                     actions.Add((new ReportFormatter(emplist[i]).AddEmployeeSalary, emplist[i]));
-                }  
+                }
 
             }
             actions.Add((new ReportFormatter(null).AddNewLine, null));
