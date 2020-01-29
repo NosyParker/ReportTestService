@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 using ReportService.Domain;
 
@@ -13,14 +14,22 @@ namespace ReportService.Controllers
     [Route("api/[controller]")]
     public class ReportController : Controller
     {
+        private readonly IConfiguration config;
+
+        public ReportController(IConfiguration configuration)
+        {
+            this.config = configuration;
+        }
+
+
         [HttpGet]
         [Route("{year}/{month}")]
         public IActionResult Download(int year, int month)
         {
             var actions = new List<(Action<Employee, Report>, Employee)>();
             var report = new Report() { S = MonthNameResolver.MonthName.GetName(year, month) };
-            var connString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
-            
+
+            var connString = config.GetConnectionString("DatabaseConnection");
 
             var conn = new NpgsqlConnection(connString);
             conn.Open();
