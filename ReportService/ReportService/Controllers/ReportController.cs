@@ -64,9 +64,9 @@ namespace ReportService.Controllers
             {
                 act.Item1(act.Item2, report);
             }
-            report.Save();
-            var file = System.IO.File.ReadAllBytes("D:\\report.txt");
-            var response = File(file, "application/octet-stream", "report.txt");
+
+            var fileContents = report.SaveAsBytes();
+            var response = File(fileContents, "application/octet-stream", "report.txt");
             return response;
         }
     }
