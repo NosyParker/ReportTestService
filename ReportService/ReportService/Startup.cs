@@ -27,6 +27,7 @@ namespace ReportService
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IReportFormatter, ReportFormatter>();
+            services.AddSingleton<IDatabaseRepository, EmployeesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
