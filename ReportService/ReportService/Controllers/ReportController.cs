@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -15,10 +16,13 @@ namespace ReportService.Controllers
     public class ReportController : Controller
     {
         private readonly IConfiguration config;
+        private readonly IReportFormatter formatter;
 
-        public ReportController(IConfiguration configuration)
+
+        public ReportController(IConfiguration configuration, IReportFormatter reportFormatter)
         {
             this.config = configuration;
+            this.formatter = reportFormatter;
         }
 
 
@@ -54,23 +58,23 @@ namespace ReportService.Controllers
                     emplist.Add(emp);
                 }
 
-                actions.Add((new ReportFormatter(null).AddNewLine, null));
-                actions.Add((new ReportFormatter(null).AddDividerLine, null));
-                actions.Add((new ReportFormatter(null).AddNewLine, null));
-                actions.Add((new ReportFormatter(null).AddEmployeeDepartament, new Employee() { Department = depName } ));
+                actions.Add((formatter.AddNewLine, null));
+                actions.Add((formatter.AddDividerLine, null));
+                actions.Add((formatter.AddNewLine, null));
+                actions.Add((formatter.AddEmployeeDepartament, new Employee() { Department = depName } ));
 
                 var empCount = emplist.Count();
                 for (int i = 0; i < empCount; i++)
                 {
-                    actions.Add((new ReportFormatter(emplist[i]).AddNewLine, null));
-                    actions.Add((new ReportFormatter(emplist[i]).AddEmployeeName, emplist[i]));
-                    actions.Add((new ReportFormatter(emplist[i]).AddTabLine, null));
-                    actions.Add((new ReportFormatter(emplist[i]).AddEmployeeSalary, emplist[i]));
+                    actions.Add((formatter.AddNewLine, null));
+                    actions.Add((formatter.AddEmployeeName, emplist[i]));
+                    actions.Add((formatter.AddTabLine, null));
+                    actions.Add((formatter.AddEmployeeSalary, emplist[i]));
                 }
 
             }
-            actions.Add((new ReportFormatter(null).AddNewLine, null));
-            actions.Add((new ReportFormatter(null).AddDividerLine, null));
+            actions.Add((formatter.AddNewLine, null));
+            actions.Add((formatter.AddDividerLine, null));
 
             foreach (var act in actions)
             {
