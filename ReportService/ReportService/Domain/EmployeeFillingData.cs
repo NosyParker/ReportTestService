@@ -37,7 +37,7 @@ namespace ReportService.Domain
             foreach(var emp in employees)
             {
                 emp.BuhCode = await empCodeGetter.GetBuhCode(emp.Inn);
-                emp.Salary = await salaryGetter.GetSalary(emp);
+                emp.Salary = await salaryGetter.GetSalary(emp.Inn, emp.BuhCode);
             }
 
             return employees;

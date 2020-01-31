@@ -16,15 +16,17 @@ public class SalaryGetter : ISalaryGetter
     /// <summary>
     /// Возвращает зарплату сотрудника
     /// </summary>
+    /// <param name="inn">ИНН сотрудника</param>
+    /// <param name="buhCode">Код сотрудника в системе кадровиков</param>
     /// <returns></returns>
-    public async Task<decimal> GetSalary(Employee employee)
+    public async Task<decimal> GetSalary(string inn, string buhCode)
     {
-        var json = JsonConvert.SerializeObject(new { employee.BuhCode });
+        var json = JsonConvert.SerializeObject(new { buhCode });
         var bodyContent = new StringContent(json, Encoding.Unicode, "application/json");
 
         using(var http = new HttpClient())
         {
-            var response = await http.PostAsync(salarySystemUrl + employee.Inn, bodyContent);
+            var response = await http.PostAsync(salarySystemUrl + inn, bodyContent);
 
             var salaryAsString = await response.Content.ReadAsString();
 

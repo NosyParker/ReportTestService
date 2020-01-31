@@ -69,8 +69,10 @@ namespace ReportService.Domain
         /// <summary>
         /// Возвращает зарплату сотрудника
         /// </summary>
+        /// <param name="inn">ИНН сотрудника</param>
+        /// <param name="buhCode">Код сотрудника в системе кадровиков</param>
         /// <returns></returns>
-        Task<decimal> GetSalary(Employee employee);
+        Task<decimal> GetSalary(string inn, string buhCode);
     }
 
 
