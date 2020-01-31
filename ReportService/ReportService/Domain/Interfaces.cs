@@ -60,4 +60,31 @@ namespace ReportService.Domain
         IEnumerable<IGrouping<string, Employee>> GetEmployeesByDept();
     }
 
+
+    /// <summary>
+    /// Базовый интерфейс для реализации сервиса получения зарплаты сотрудника
+    /// </summary>
+    public interface ISalaryGetter
+    {
+        /// <summary>
+        /// Возвращает зарплату сотрудника
+        /// </summary>
+        /// <returns></returns>
+        Task<decimal> GetSalary(Employee employee);
+    }
+
+
+    /// <summary>
+    /// Базовый интерфейс для реализации сервиса получения кода сотрудника
+    /// </summary>
+    public interface IEmpCodeGetter
+    {
+        /// <summary>
+        /// Возвращает код сотрудника
+        /// </summary>
+        /// <param name="inn">ИНН сотрудника</param>
+        /// <returns></returns>
+        Task<string> GetBuhCode(string inn);
+    }
+
 }
