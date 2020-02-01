@@ -105,4 +105,58 @@ namespace ReportService.Domain
 
     }
 
+
+    /// <summary>
+    /// Базовый интерфейс для реализации сервиса генерации 
+    /// отчетов по зарплате сотрудников компании
+    /// </summary>
+    public interface IReportMaker
+    {
+        /// <summary>
+        /// Генерирует итоговый отчет по зарплатам сотрудников
+        /// в виде байтового массива
+        /// </summary>
+        /// <returns></returns>
+        Task<byte[]> GetReport(int year, int month);
+    }
+
+
+    /// <summary>
+    /// Базовый интерфейс для реализации сервиса
+    /// заполнения/оформления отчетов
+    /// </summary>
+    public interface IReportPrettier
+    {
+        /// <summary>
+        /// Генерирует заголовок отчета
+        /// </summary>
+        /// <returns></returns>
+        string MakeReportHeader(int year, int month);
+
+        /// <summary>
+        /// Генерирует подраздел с названием отдела
+        /// </summary>
+        /// <returns></returns>
+        string MakeDeptTitle(IGrouping<string, Employee> deptGroup);
+
+        /// <summary>
+        /// Генерирует строку с информацией о зарплате конкретного сотрудника
+        /// </summary>
+        /// <returns></returns>
+        string MakeEmpSalaryInfo(Employee employee);
+
+        /// <summary>
+        /// Генерирует раздел с информацией о зарплате всего отдела
+        /// </summary>
+        /// <returns></returns>
+        string MakeDeptSalaryInfo(IGrouping<string, Employee> deptGroup);
+
+        /// <summary>
+        /// Генерирует раздел с информацией о зарплате всей компании
+        /// </summary>
+        /// <returns></returns>
+        string MakeTotalSalaryInfo(IEnumerable<IGrouping<string, Employee>> employees);
+    }
+
+
 }
