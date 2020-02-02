@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ReportService.Domain.Interfaces
 {
@@ -12,12 +13,12 @@ namespace ReportService.Domain.Interfaces
         /// Возвращает сведения о всех сотрудниках в БД
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Employee> GetAllEmployees();
+        Task<IEnumerable<Employee>> GetAllEmployees();
 
         /// <summary>
         /// Возвращает сведения о всех сотрудниках, сгруппированных по отделам
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IGrouping<string, Employee>> GetEmployeesByDept();
+        Task<IEnumerable<IGrouping<string, Employee>>> GetEmployeesByDept();
     }
 }

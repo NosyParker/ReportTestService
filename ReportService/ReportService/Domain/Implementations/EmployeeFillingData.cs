@@ -24,13 +24,13 @@ namespace ReportService.Domain
         }
 
         /// <summary>
-        /// Возвращает набор объектов сотрудников, 
+        /// Возвращает набор объектов сотрудников,
         /// заполненных данными о зарплате и кодах сотрудника
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<Employee>> GetEmployeesWithFilledData()
         {
-            var employees = repo.GetAllEmployees();
+            var employees = await repo.GetAllEmployees();
 
             foreach(var emp in employees)
             {

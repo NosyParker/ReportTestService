@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -25,13 +26,13 @@ namespace ReportService.Domain
         /// Возвращает данные всех сотрудников, записи которых есть в БД
         /// </summary>
         /// <returns><see cref="IEnumerable{T}"/>последовательность объектов <see cref="Employee"/></returns>
-        public IEnumerable<Employee> GetAllEmployees()
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
             using (var db = Connection)
             {
                 db.Open();
 
-                return db.Query<Employee>("SELECT e.name Name, e.inn Inn, d.name Departament " +
+                return await db.QueryAsync<Employee>("SELECT e.name Name, e.inn Inn, d.name Departament " +
                                           "FROM emps e " +
                                           "INNER JOIN deps d ON e.departmentid = d.id");
             }
@@ -42,9 +43,9 @@ namespace ReportService.Domain
         /// </summary>
         /// <returns><see cref="IEnumerable{T}"/> последовательность сгруппированных объектов
         /// <see cref="Employee"/> по названию отдела <see cref="Employee.Department"/></returns>
-        public IEnumerable<IGrouping<string, Employee>> GetEmployeesByDept()
+        public async Task<IEnumerable<IGrouping<string, Employee>>> GetEmployeesByDept()
         {
-            var employees = this.GetAllEmployees();
+            var employees = await this.GetAllEmployees();
 
             return employees.GroupBy(emp => emp.Department, emp => emp);
         }
