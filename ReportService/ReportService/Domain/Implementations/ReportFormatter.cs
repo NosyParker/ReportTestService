@@ -1,4 +1,5 @@
 ﻿using ReportService.Domain.Interfaces;
+using ReportService.External;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace ReportService.Domain
         /// <returns></returns>
         public string MakeReportHeader(int year, int month)
         {
-            return $"{MonthNameResolver.MonthName.GetName(year, month)} {year}";
+            return $"{PeriodResolver.GetDate(year, month)}";
         }
 
 
