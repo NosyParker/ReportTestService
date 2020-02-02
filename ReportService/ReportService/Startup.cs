@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ReportService.Domain;
-using ReportService.Domain.Interfaces;
+using ReportService.Extensions;
 
 namespace ReportService
 {
@@ -21,13 +20,7 @@ namespace ReportService
         {
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);
-
-            services.AddSingleton<IDatabaseRepository, EmployeesRepository>();
-            services.AddSingleton<IEmpCodeGetter, EmpCodeGetter>();
-            services.AddSingleton<ISalaryGetter, SalaryGetter>();
-            services.AddSingleton<IEmployeeFillingData, EmployeeFillingData>();
-            services.AddSingleton<IReportMaker, ReportMaker>();
-            services.AddSingleton<IReportFormatter, ReportFormatter>();
+            services.InjectReportServiceDependencies();
 
         }
 
