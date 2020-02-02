@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using ReportService.Domain;
+using ReportService.Domain.Interfaces;
 
 namespace ReportService
 {
@@ -26,8 +21,6 @@ namespace ReportService
         {
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);
-
-            services.AddSingleton<IReportFormatter, ReportFormatter>();
 
             services.AddSingleton<IDatabaseRepository, EmployeesRepository>();
             services.AddSingleton<IEmpCodeGetter, EmpCodeGetter>();

@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ReportService.Domain;
+using ReportService.Domain.Interfaces;
 
 /// <summary>
 /// Сервис для получения зарплаты сотрудника
