@@ -33,7 +33,7 @@ namespace ReportService.Domain
 
             var empByDeps = employees.GroupBy(emp => emp.Department);
 
-            builder.Append(formatter.MakeReportHeader(int year, int month));
+            builder.Append(formatter.MakeReportHeader(year, month));
 
             foreach(var group in empByDeps)
             {
@@ -47,7 +47,7 @@ namespace ReportService.Domain
                 builder.Append(formatter.MakeDeptSalaryInfo(group));
             }
 
-            builder.Append(formatter.MakeTotalSalaryInfo(employees));
+            builder.Append(formatter.MakeTotalSalaryInfo(empByDeps));
 
             return Encoding.Unicode.GetBytes(builder.ToString());
 

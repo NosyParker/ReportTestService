@@ -23,7 +23,7 @@ namespace ReportService.Domain
         {
             using (var http = new HttpClient())
             {
-                return await client.GetStringAsync(buhSystemUrl + inn);
+                return await http.GetStringAsync(buhSystemUrl + inn);
             }
 
         }

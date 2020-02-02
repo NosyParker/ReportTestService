@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
+using ReportService.Domain;
 
 /// <summary>
 /// Сервис для получения зарплаты сотрудника
@@ -28,7 +28,7 @@ public class SalaryGetter : ISalaryGetter
         {
             var response = await http.PostAsync(salarySystemUrl + inn, bodyContent);
 
-            var salaryAsString = await response.Content.ReadAsString();
+            var salaryAsString = await response.Content.ReadAsStringAsync();
 
             return decimal.Parse(salaryAsString);
         }
