@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ReportService.Domain;
+using ReportService.Domain.Implementations;
 using ReportService.Domain.Interfaces;
 
 namespace ReportService.Extensions

@@ -2,12 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ReportService.Controllers;
-using ReportService.Domain;
+using ReportService.Domain.Implementations;
 using ReportService.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ReportService.Tests
 {

@@ -2,7 +2,7 @@ using ReportService.Domain.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ReportService.Domain
+namespace ReportService.Domain.Implementations
 {
     /// <summary>
     /// Сервис для получения набора объектов сотрудников,

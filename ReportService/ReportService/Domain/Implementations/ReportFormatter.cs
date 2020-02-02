@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ReportService.Domain
+namespace ReportService.Domain.Implementations
 {
     /// <summary>
     /// Класс сервиса заполнения/оформления отчетов

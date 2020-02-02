@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportService.Domain
+namespace ReportService.Domain.Implementations
 {
     /// <summary>
     /// Сервис генерации отчетов по зарплате сотрудников компании

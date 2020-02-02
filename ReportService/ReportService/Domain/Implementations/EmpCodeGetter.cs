@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ReportService.Domain
+namespace ReportService.Domain.Implementations
 {
     /// <summary>
     /// Сервис для получения кода сотрудника

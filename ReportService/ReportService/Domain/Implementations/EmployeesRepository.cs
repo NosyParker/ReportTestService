@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Npgsql;
 using ReportService.Domain.Interfaces;
 
-namespace ReportService.Domain
+namespace ReportService.Domain.Implementations
 {
     /// <summary>
     /// Базовый репозиторий для работы с БД сотрудников
