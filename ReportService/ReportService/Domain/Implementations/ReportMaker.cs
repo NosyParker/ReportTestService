@@ -11,10 +11,10 @@ namespace ReportService.Domain
     public class ReportMaker : IReportMaker
     {
         private readonly StringBuilder builder;
-        private readonly IReportPrettier formatter;
+        private readonly IReportFormatter formatter;
         private readonly IEmployeeFillingData employeeWithDataService;
 
-        public ReportMaker(IEmployeeFillingData employeeFillingService, IReportPrettier reportFormatter)
+        public ReportMaker(IEmployeeFillingData employeeFillingService, IReportFormatter reportFormatter)
         {
             builder = new StringBuilder();
             formatter = reportFormatter;

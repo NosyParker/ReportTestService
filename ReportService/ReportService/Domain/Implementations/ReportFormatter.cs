@@ -8,7 +8,7 @@ namespace ReportService.Domain
     /// <summary>
     /// Класс сервиса заполнения/оформления отчетов
     /// </summary>
-    public class ReportPrettier : IReportPrettier
+    public class ReportFormatter : IReportFormatter
     {
         private const string dividerLine = "--------------------------------------------";
         private const string tabSpace = "\t";

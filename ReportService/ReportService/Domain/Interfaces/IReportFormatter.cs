@@ -7,7 +7,7 @@ namespace ReportService.Domain.Interfaces
     /// Базовый интерфейс для реализации сервиса
     /// заполнения/оформления отчетов
     /// </summary>
-    public interface IReportPrettier
+    public interface IReportFormatter
     {
         /// <summary>
         /// Генерирует заголовок отчета

@@ -27,7 +27,7 @@ namespace ReportService
             services.AddSingleton<ISalaryGetter, SalaryGetter>();
             services.AddSingleton<IEmployeeFillingData, EmployeeFillingData>();
             services.AddSingleton<IReportMaker, ReportMaker>();
-            services.AddSingleton<IReportPrettier, ReportPrettier>();
+            services.AddSingleton<IReportFormatter, ReportFormatter>();
 
         }
 
