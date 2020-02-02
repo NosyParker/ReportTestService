@@ -32,9 +32,12 @@ namespace ReportService.Domain
             {
                 db.Open();
 
-                return await db.QueryAsync<Employee>("SELECT e.name Name, e.inn Inn, d.name Departament " +
-                                          "FROM emps e " +
-                                          "INNER JOIN deps d ON e.departmentid = d.id");
+                var sqlQuery = @"SELECT e.name Name, e.inn Inn, d.name Departament
+                                FROM emps e
+                                INNER JOIN deps d ON e.departmentid = d.id
+                                WHERE d.active = true";
+
+                return await db.QueryAsync<Employee>(sqlQuery);
             }
         }
 
