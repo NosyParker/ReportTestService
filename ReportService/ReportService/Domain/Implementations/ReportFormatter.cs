@@ -55,7 +55,7 @@ namespace ReportService.Domain
         /// <returns></returns>
         public string MakeReportHeader(int year, int month)
         {
-            return $"{PeriodResolver.GetDate(year, month)}";
+            return $"{PeriodNameResolver.GetDate(year, month)}";
         }
 
 

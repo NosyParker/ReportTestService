@@ -6,7 +6,7 @@ namespace ReportService.External
     /// <summary>
     /// Класс для реализации сервиса формирования дат в формате удобночитаемых строк
     /// </summary>
-    public static class PeriodResolver
+    public static class PeriodNameResolver
     {
         /// <summary>
         /// Формирует строку типа "Месяц Год"
